@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Photo placeholder">
+  <defs>
+    <pattern id="jr-ph-stripes" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(135)">
+      <rect width="22" height="22" fill="#20302a"></rect>
+      <rect width="11" height="22" fill="#243530"></rect>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="#0d1210"></rect>
+  <rect width="800" height="600" fill="url(#jr-ph-stripes)" opacity="0.6"></rect>
+  <circle cx="400" cy="262" r="70" fill="none" stroke="#3fae74" stroke-width="4"></circle>
+  <path d="M286 392c0-63 51-114 114-114s114 51 114 114" fill="none" stroke="#3fae74" stroke-width="4"></path>
+  <text x="400" y="470" text-anchor="middle" fill="#7f8d86" font-family="&#39;IBM Plex Mono&#39;, ui-monospace, monospace" font-size="26" letter-spacing="1">&gt;_ portrait</text>
+</svg>

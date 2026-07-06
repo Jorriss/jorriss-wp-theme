@@ -1,0 +1,99 @@
+<!-- wp:template-part {"slug":"header","area":"header","tagName":"header"} /-->
+
+<!-- wp:pattern {"slug":"jorriss/hero"} /-->
+
+<!-- wp:group {"tagName":"section","className":"jr-section","align":"wide","anchor":"writing","layout":{"type":"constrained","contentSize":"1180px"}} -->
+<section class="wp-block-group alignwide jr-section" id="writing"><!-- wp:group {"style":{"spacing":{"margin":{"bottom":"40px"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap","verticalAlignment":"bottom"}} -->
+<div class="wp-block-group" style="margin-bottom:40px"><!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"className":"jr-eyebrow"} -->
+<p class="jr-eyebrow">// latest writing</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":2,"fontSize":"x-large","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<h2 class="wp-block-heading has-x-large-font-size" style="margin-top:0;margin-bottom:0">Notes from the query planner.</h2>
+<!-- /wp:heading --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"jr-link-arrow"} -->
+<p class="jr-link-arrow"><a href="/blog/">all posts →</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"jr-featured-loop","style":{"spacing":{"margin":{"bottom":"40px"}}},"layout":{"type":"constrained","contentSize":"1180px"}} -->
+<div class="wp-block-group jr-featured-loop" style="margin-bottom:40px"><!-- wp:query {"queryId":10,"query":{"perPage":1,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":false}} -->
+<div class="wp-block-query"><!-- wp:post-template -->
+<!-- wp:group {"className":"jr-featured","tagName":"div","layout":{"type":"default"}} -->
+<div class="wp-block-group jr-featured"><!-- wp:group {"className":"jr-cover","layout":{"type":"default"}} -->
+<div class="wp-block-group jr-cover"><!-- wp:paragraph {"className":"jr-featured-badge"} -->
+<p class="jr-featured-badge">★ FEATURED</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:post-featured-image {"isLink":true} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"jr-featured-body","style":{"spacing":{"blockGap":"14px"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group jr-featured-body"><!-- wp:group {"className":"jr-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group jr-meta"><!-- wp:post-date {"format":"M j, Y"} /-->
+
+<!-- wp:paragraph {"className":"jr-primary-term","metadata":{"bindings":{"content":{"source":"jorriss/primary-term"}}},"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<p class="jr-primary-term" style="margin-top:0;margin-bottom:0">#tag</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"jorriss/reading-time"}}},"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<p style="margin-top:0;margin-bottom:0">min read</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:post-title {"level":3,"isLink":true,"className":"jr-post-title-link"} /-->
+
+<!-- wp:post-excerpt {"className":"jr-post-excerpt","moreText":"","showMoreOnNewLine":false} /-->
+
+<!-- wp:paragraph {"className":"jr-read"} -->
+<p class="jr-read">read the post →</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+<!-- /wp:post-template --></div>
+<!-- /wp:query --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"jr-post-grid","layout":{"type":"constrained","contentSize":"1180px"}} -->
+<div class="wp-block-group jr-post-grid"><!-- wp:query {"queryId":11,"query":{"perPage":3,"pages":0,"offset":1,"postType":"post","order":"desc","orderBy":"date","inherit":false}} -->
+<div class="wp-block-query"><!-- wp:post-template -->
+<!-- wp:group {"className":"jr-card-cover","layout":{"type":"default"}} -->
+<div class="wp-block-group jr-card-cover"><!-- wp:post-featured-image {"isLink":true} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"jr-card-body","layout":{"type":"constrained"}} -->
+<div class="wp-block-group jr-card-body"><!-- wp:group {"className":"jr-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
+<div class="wp-block-group jr-meta"><!-- wp:post-date {"format":"M j"} /-->
+
+<!-- wp:paragraph {"className":"jr-primary-term","metadata":{"bindings":{"content":{"source":"jorriss/primary-term"}}},"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<p class="jr-primary-term" style="margin-top:0;margin-bottom:0">#tag</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:post-title {"level":3,"isLink":true,"className":"jr-post-title-link"} /-->
+
+<!-- wp:post-excerpt {"className":"jr-post-excerpt","moreText":"","showMoreOnNewLine":false} /--></div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-no-results -->
+<!-- wp:group {"className":"jr-empty","layout":{"type":"constrained"}} -->
+<div class="wp-block-group jr-empty"><!-- wp:heading {"level":3,"fontSize":"large"} -->
+<h3 class="wp-block-heading has-large-font-size">No posts yet — the first one's brewing.</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph {"className":"jr-eyebrow","align":"center"} -->
+<p class="jr-eyebrow has-text-align-center">// check back soon</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query --></div>
+<!-- /wp:group --></section>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"jorriss/about"} /-->
+
+<!-- wp:template-part {"slug":"footer","area":"footer","tagName":"footer"} /-->

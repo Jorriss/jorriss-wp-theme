@@ -1,0 +1,20 @@
+/*
+Theme Name: Jorriss
+Theme URI: https://jorriss.com/
+Author: Richie Rump
+Author URI: https://jorriss.com/
+Description: A bold, developer-forward block theme for jorriss.com — dark techy hero, editorial writing grid, and one confident green accent. Built for the WordPress Site Editor: nav and footer are editable template parts, the hero and about sections are insertable block patterns, and posts flow through the Query Loop.
+Requires at least: 6.7
+Tested up to: 7.0
+Requires PHP: 7.4
+Version: 1.0.14
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: jorriss
+Tags: blog, one-column, block-patterns, full-site-editing, editor-style, custom-colors, custom-menu, featured-images, threaded-comments
+
+Jorriss is distributed under the terms of the GNU GPL v2 or later.
+
+The actual styles live in assets/main.css (enqueued for both the site and the
+editor). This file only carries the required theme header.
+*/
