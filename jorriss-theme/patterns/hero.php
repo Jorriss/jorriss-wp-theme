@@ -7,8 +7,8 @@
  */
 ?>
 <!-- wp:group {"tagName":"section","className":"jr-hero","align":"full","backgroundColor":"dark","layout":{"type":"constrained","contentSize":"1180px"}} -->
-<section class="wp-block-group alignfull jr-hero has-dark-background-color has-background"><!-- wp:columns {"align":"wide","verticalAlignment":"center","style":{"spacing":{"padding":{"top":"88px","bottom":"96px"},"blockGap":{"left":"56px"}}}} -->
-<div class="wp-block-columns alignwide are-vertically-aligned-center" style="padding-top:88px;padding-bottom:96px"><!-- wp:column {"verticalAlignment":"center","width":"58%"} -->
+<section class="wp-block-group alignfull jr-hero has-dark-background-color has-background"><!-- wp:columns {"align":"wide","verticalAlignment":"center","style":{"spacing":{"padding":{"top":"30px","bottom":"50px"},"blockGap":{"left":"56px"}}}} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-center" style="padding-top:30px;padding-bottom:50px"><!-- wp:column {"verticalAlignment":"center","width":"58%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:58%"><!-- wp:paragraph {"className":"jr-badge"} -->
 <p class="jr-badge">databases · code · the space between</p>
 <!-- /wp:paragraph -->
