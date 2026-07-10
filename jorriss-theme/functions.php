@@ -34,11 +34,12 @@ function jorriss_assets() {
 		array(),
 		null
 	);
+	$main_css_path = get_theme_file_path( 'assets/main.css' );
 	wp_enqueue_style(
 		'jorriss-theme',
 		get_theme_file_uri( 'assets/main.css' ),
 		array( 'jorriss-fonts' ),
-		wp_get_theme()->get( 'Version' )
+		file_exists( $main_css_path ) ? filemtime( $main_css_path ) : wp_get_theme()->get( 'Version' )
 	);
 }
 add_action( 'enqueue_block_assets', 'jorriss_assets' );
@@ -55,6 +56,31 @@ function jorriss_pattern_category() {
 	}
 }
 add_action( 'init', 'jorriss_pattern_category' );
+
+/**
+ * Register selectable layout styles for the blog post list.
+ * These appear in the Post Template block's "Styles" panel in the Site Editor;
+ * the chosen style adds an is-style-* class targeted by CSS in assets/main.css.
+ */
+function jorriss_register_post_list_styles() {
+	if ( ! function_exists( 'register_block_style' ) ) {
+		return;
+	}
+	register_block_style( 'core/post-template', array(
+		'name'       => 'cards',
+		'label'      => __( 'Cards (stacked)', 'jorriss' ),
+		'is_default' => true,
+	) );
+	register_block_style( 'core/post-template', array(
+		'name'  => 'grid',
+		'label' => __( 'Grid (two columns)', 'jorriss' ),
+	) );
+	register_block_style( 'core/post-template', array(
+		'name'  => 'list',
+		'label' => __( 'List (image left)', 'jorriss' ),
+	) );
+}
+add_action( 'init', 'jorriss_register_post_list_styles' );
 
 /**
  * ---------------------------------------------------------------------------
@@ -102,6 +128,17 @@ function jorriss_primary_term( $post_id ) {
 }
 
 /**
+ * Comment count for a post as a human phrase, e.g. "12 comments".
+ */
+function jorriss_comment_count( $post_id ) {
+	$count = (int) get_comments_number( $post_id );
+	if ( 0 === $count ) {
+		return 'No comments';
+	}
+	return sprintf( _n( '%s comment', '%s comments', $count, 'jorriss' ), number_format_i18n( $count ) );
+}
+
+/**
  * Register the binding sources.
  */
 function jorriss_register_bindings() {
@@ -127,6 +164,17 @@ function jorriss_register_bindings() {
 			'get_value_callback' => function ( $source_args, $block ) {
 				$term = jorriss_primary_term( jorriss_binding_post_id( $block ) );
 				return $term ? $term : '// writing';
+			},
+			'uses_context'       => array( 'postId' ),
+		)
+	);
+
+	register_block_bindings_source(
+		'jorriss/comment-count',
+		array(
+			'label'              => __( 'Comment count', 'jorriss' ),
+			'get_value_callback' => function ( $source_args, $block ) {
+				return jorriss_comment_count( jorriss_binding_post_id( $block ) );
 			},
 			'uses_context'       => array( 'postId' ),
 		)

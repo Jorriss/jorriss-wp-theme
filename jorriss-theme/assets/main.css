@@ -122,9 +122,9 @@
 .jr-btn-ghost a, a.jr-btn-ghost { font-family: var(--wp--preset--font-family--mono); font-size: 14px; color: #eef4f0 !important; background: transparent; border: 1px solid rgba(255,255,255,0.18); padding: 13px 22px; border-radius: 10px; text-decoration: none; }
 .jr-btn-ghost a:hover, a.jr-btn-ghost:hover { border-color: var(--jr-accent); color: var(--jr-accent) !important; }
 
-.jr-photo-wrap { position: relative; width: fit-content; margin-inline: auto; }
+.jr-photo-wrap { position: relative; width: 100%; max-width: 520px; margin-inline: auto; }
 .jr-photo-wrap::before { content: ""; position: absolute; inset: -14px; border: 1px solid rgba(255,255,255,0.12); border-radius: 22px; }
-.jr-photo-wrap .jr-hero-photo, .jr-photo-wrap .wp-block-image { margin: 0; width: 440px; max-width: 100%; aspect-ratio: 4 / 3; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.14); background: #262b29; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6); }
+.jr-photo-wrap .jr-hero-photo, .jr-photo-wrap .wp-block-image { margin: 0; width: 100%; max-width: 100%; aspect-ratio: 4 / 3 !important; height: auto !important; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.14); background: #262b29; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6); }
 .jr-photo-wrap .jr-hero-photo img, .jr-photo-wrap .wp-block-image img { display: block; width: 100% !important; height: 100% !important; aspect-ratio: 4 / 3 !important; object-fit: cover !important; border-radius: 16px; background: #262b29; }
 .jr-chip {
 	position: absolute; top: -22px; right: -30px; left: auto; margin: 0;
@@ -134,11 +134,14 @@
 }
 .jr-techstrip { border-top: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
 .jr-techstrip p { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 24px; font-family: var(--wp--preset--font-family--mono); font-size: 12.5px; color: #7f8d86 !important; margin: 0; }
+.jr-techstrip p a,
+.jr-techstrip p a:visited { color: var(--jr-accent) !important; text-decoration: none; }
+.jr-techstrip p a:hover { text-decoration: underline; }
 
 /* ---------------------------------------------------------------
    WRITING SECTION  (Query Loops on the front page)
    --------------------------------------------------------------- */
-.jr-section { padding-top: clamp(56px,8vw,88px); padding-bottom: 40px; }
+.jr-section { padding-top: clamp(56px,8vw,40px); padding-bottom: 40px; }
 .jr-eyebrow { font-family: var(--wp--preset--font-family--mono); font-size: 12.5px; color: var(--jr-accent-ink); margin: 0 0 12px; }
 .jr-hero .jr-eyebrow, .jr-masthead .jr-eyebrow, .jr-about .jr-eyebrow { color: var(--jr-accent) !important; }
 .jr-link-arrow a, a.jr-link-arrow { font-family: var(--wp--preset--font-family--mono); font-size: 13px; color: var(--jr-ink) !important; border-bottom: 2px solid var(--jr-accent); padding-bottom: 3px; text-decoration: none; }
@@ -172,18 +175,55 @@
 }
 .jr-post-grid li:hover { border-color: var(--jr-accent); transform: translateY(-3px); }
 .jr-card-cover { position: relative; height: 150px; margin: 0; background: repeating-linear-gradient(135deg, #f0f2ef, #f0f2ef 11px, #e7eae6 11px, #e7eae6 22px); overflow: hidden; }
-.jr-card-cover img, .jr-card-cover figure { width: 100%; height: 100%; margin: 0; object-fit: cover; }
-.jr-card-body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 10px; }
+/* Featured image must fully cover the card — force it edge-to-edge so the card
+   can never render wider than the image (no exposed hatched placeholder). */
+.jr-card-cover .wp-block-post-featured-image,
+.jr-card-cover .wp-block-post-featured-image a,
+.jr-card-cover figure { display: block; width: 100% !important; height: 100% !important; margin: 0; }
+.jr-card-cover img { display: block; width: 100% !important; height: 100% !important; margin: 0; object-fit: cover; }
+.jr-card-body { padding: 20px 22px 24px !important; display: flex; flex-direction: column; gap: 10px; }
 
 /* Shared post-meta + titles used across loops + single */
 .jr-meta { font-family: var(--wp--preset--font-family--mono); font-size: 12px; color: var(--jr-muted); margin: 0; display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
 .jr-meta .jr-primary-term { color: var(--jr-accent-ink); }
 .jr-card-body .jr-meta, .jr-card-body .jr-post-excerpt { font-size: 12px; }
+/* Cancel constrained-layout caps so card content fills the card + left-aligns
+   instead of being capped at contentSize and centered. The doubled class bumps
+   specificity to (0,2,0) so this beats core's equal-specificity !important rule
+   regardless of stylesheet order (e.g. the meta row: date · read · comments). */
+.jr-card-body.jr-card-body > *,
+.jr-featured-body.jr-featured-body > * { max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; }
+/* Force all card body text (meta, title, excerpt) to left-align */
+.jr-card-body, .jr-card-body > *, .jr-card-body .jr-post-title-link,
+.jr-featured-body, .jr-featured-body > *, .jr-featured-body .jr-post-title-link { text-align: left; }
+/* Let children fill the column (like the working grid cards) so a short title
+   can't shrink-wrap and get centered by core's margin-inline:auto. */
+.jr-featured .jr-featured-body { align-items: stretch; }
+/* Force the title + "read the post" link hard-left. width:100% makes the box fill
+   the column, so even if core's constrained-layout margin-inline:auto wins the
+   specificity fight there's no free space to center it — text-align then governs.
+   Fixes short titles centering while wrapped titles left-aligned. */
+.jr-featured-body .jr-post-title-link,
+.jr-featured-body .jr-read,
+.jr-card-body .jr-post-title-link,
+.jr-card-body .jr-read {
+	align-self: stretch;
+	width: 100%;
+	text-align: left !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+/* Left-aligned, tightly dot-separated meta for loop cards + featured post */
+.jr-card-body .jr-meta,
+.jr-featured-body .jr-meta { justify-content: flex-start; align-items: baseline; column-gap: 0; row-gap: 4px; width: 100%; }
+.jr-card-body .jr-meta > *:not(:first-child)::before,
+.jr-featured-body .jr-meta > *:not(:first-child)::before { content: "·"; margin: 0 7px; color: var(--jr-muted); }
 .jr-post-title-link a { color: var(--jr-ink); text-decoration: none; }
 .jr-featured .jr-post-title-link { font-size: clamp(22px, 3.2vw, 30px); }
 .jr-card-body .jr-post-title-link { font-size: 20px; }
+h3.jr-post-title-link { margin-top: 10px; }
 .jr-post-excerpt { color: var(--jr-muted); line-height: 1.6; margin: 0; }
-.jr-card-body .jr-post-excerpt { font-size: 14.5px; }
+.jr-card-body .jr-post-excerpt { font-size: 14.5px; margin-block-start: 0; }
 .jr-read { font-family: var(--wp--preset--font-family--mono); font-size: 13px; color: var(--jr-accent-ink) !important; font-weight: 500; }
 
 .jr-empty { border: 1px dashed var(--jr-line); border-radius: 18px; padding: 64px 32px; text-align: center; }
@@ -194,6 +234,161 @@
 .jr-pagination .wp-block-query-pagination-numbers, .jr-pagination a, .jr-pagination .page-numbers { color: var(--jr-ink); }
 .jr-pagination a:hover { color: var(--jr-accent-ink); }
 .jr-pagination .current { color: var(--jr-accent-ink); font-weight: 600; }
+
+/* ---------------------------------------------------------------
+   BLOG INDEX — two-column layout, stacked post cards, sidebar
+   (template: index.html + parts: sidebar*, widgets are core blocks)
+   --------------------------------------------------------------- */
+.jr-blog-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 300px;
+	gap: clamp(32px, 5vw, 56px);
+	align-items: start;
+}
+
+/* "Showing N posts" count line above the list */
+.jr-count { display: block; font-family: var(--wp--preset--font-family--mono); font-size: 12.5px; color: var(--jr-muted); margin: 0 0 22px; }
+
+/* Stacked post cards (single column) */
+.jr-postlist .wp-block-post-template { display: flex; flex-direction: column; gap: 22px; margin: 0; padding: 0; list-style: none; }
+.jr-postlist .wp-block-post-template > li { margin: 0; }
+.jr-postcard { background: #fff; border: 1px solid var(--jr-line); border-radius: 16px; overflow: hidden; transition: border-color .15s, transform .15s, box-shadow .15s; }
+.jr-postcard:hover { border-color: var(--jr-accent); transform: translateY(-3px); box-shadow: 0 18px 40px -28px rgba(0,0,0,0.35); }
+/* The postcard is a WP constrained-layout group, so core caps its direct children
+   (cover + body) at contentSize (720px), centers them with margin:auto, and adds
+   .has-global-padding — which made the card render wider than the 720px-capped
+   image. Higher-specificity !important overrides let the cover + body fill the card. */
+.jr-postcard { padding-left: 0 !important; padding-right: 0 !important; }
+.jr-postlist .jr-postcard > * { max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; }
+
+/* Postcard base styling — decoupled from the front-page/search/archive .jr-card-*
+   classes so blog-index cards can be restyled independently. Mirrors the shared
+   card rules (see .jr-card-* around the "Grid" section) but scoped to index-only
+   .jr-postcard-* names. Keep these in sync only intentionally. */
+.jr-postcard-cover { position: relative; height: 150px; margin: 0; background: repeating-linear-gradient(135deg, #f0f2ef, #f0f2ef 11px, #e7eae6 11px, #e7eae6 22px); overflow: hidden; }
+.jr-postcard-cover .wp-block-post-featured-image,
+.jr-postcard-cover .wp-block-post-featured-image a,
+.jr-postcard-cover figure { display: block; width: 100% !important; height: 100% !important; margin: 0; }
+.jr-postcard-cover img { display: block; width: 100% !important; height: 100% !important; margin: 0; object-fit: cover; }
+.jr-postcard-body { padding: 20px 22px 24px !important; display: flex; flex-direction: column; gap: 10px; }
+.jr-postcard-meta { font-family: var(--wp--preset--font-family--mono); font-size: 12px; color: var(--jr-muted); margin: 0; display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
+.jr-postcard-body .jr-postcard-meta, .jr-postcard-body .jr-postcard-excerpt { font-size: 12px; }
+/* Cancel constrained-layout caps so card content fills + left-aligns (doubled
+   class bumps specificity to beat core's equal-specificity !important rule). */
+.jr-postcard-body.jr-postcard-body > * { max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; }
+.jr-postcard-body, .jr-postcard-body > *, .jr-postcard-body .jr-postcard-title-link { text-align: left; }
+.jr-postcard-body .jr-postcard-title-link,
+.jr-postcard-body .jr-postcard-read {
+	align-self: stretch;
+	width: 100%;
+	text-align: left !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+.jr-postcard-body .jr-postcard-meta { justify-content: flex-start; align-items: baseline; column-gap: 0; row-gap: 4px; width: 100%; margin-block-start: 0px; }
+.jr-postcard-body .jr-postcard-meta > *:not(:first-child)::before { content: "·"; margin: 0 7px; color: var(--jr-muted); }
+.jr-postcard-title-link a { color: var(--jr-ink); text-decoration: none; }
+.jr-postcard-body .jr-postcard-title-link { font-size: 20px; }
+.jr-postcard-excerpt { color: var(--jr-muted); line-height: 1.6; margin: 0; }
+.jr-postcard-body .jr-postcard-excerpt { font-size: 14.5px; margin-block-start: 0; }
+.jr-postcard-read { font-family: var(--wp--preset--font-family--mono); font-size: 13px; color: var(--jr-accent-ink) !important; font-weight: 500; }
+
+.jr-postcard .jr-postcard-cover { height: 190px; }
+.jr-postcard .jr-postcard-body { gap: 12px; padding: 22px 48px 26px 48px !important; }
+.jr-postcard .jr-postcard-title-link { font-size: clamp(21px, 2.4vw, 25px); margin: 0; }
+.jr-postcard .jr-postcard-excerpt { font-size: 14.5px; }
+
+/* Category badge floating over the cover */
+.jr-card-badge { position: absolute; top: 16px; left: 16px; z-index: 2; margin: 0; font-family: var(--wp--preset--font-family--mono); font-size: 11px; font-weight: 600; line-height: 1; color: #0d1210; background: var(--jr-accent); padding: 6px 11px; border-radius: 999px; }
+.jr-card-badge a { color: #0d1210; text-decoration: none; }
+
+/* Card meta: "{date} · {N min read} · {N comments}" (dot separators come from the .jr-postcard-body .jr-postcard-meta rule above) */
+.jr-postcard .jr-comment-count { margin: 0; }
+
+/* "Continue reading" read-more link */
+.jr-postcard .jr-postcard-read, a.jr-postcard-read.wp-block-read-more { display: inline-block; text-decoration: none; margin-top: 2px; }
+.jr-postcard .jr-postcard-read:hover { color: var(--jr-accent) !important; }
+
+/* Centered, pill-style pagination */
+.jr-pagination { justify-content: center; gap: 8px; align-items: center; }
+.jr-pagination .wp-block-query-pagination-numbers { display: flex; gap: 8px; }
+.jr-pagination a, .jr-pagination .wp-block-query-pagination-numbers .page-numbers { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; height: 36px; padding: 0 10px; border: 1px solid var(--jr-line); border-radius: 9px; color: var(--jr-ink); text-decoration: none; }
+.jr-pagination a:hover { border-color: var(--jr-accent); color: var(--jr-accent-ink); }
+.jr-pagination .current { background: var(--jr-accent); border-color: var(--jr-accent); color: #0d1210; font-weight: 600; }
+
+/* ---------------------------------------------------------------
+   SELECTABLE POST-LIST LAYOUTS (block style variations)
+   Registered on core/post-template in functions.php. The default
+   "cards" style uses the base .wp-block-post-template flex column
+   above; only grid + list need overrides.
+   --------------------------------------------------------------- */
+
+/* Grid — two columns of cards (image on top) */
+.jr-postlist .wp-block-post-template.is-style-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.jr-postlist .is-style-grid .jr-postcard-body { padding: 20px 24px 24px !important; }
+.jr-postlist .is-style-grid .jr-postcard-title-link { font-size: clamp(19px, 2vw, 22px); }
+
+/* List — featured image left, info right, uniform card height.
+   Fixed min-height + clamped text keep every card the same size; the cover
+   stretches flush to the full card height (object-fit fills the image, the
+   hatched gradient shows for imageless posts). */
+.jr-postlist .is-style-list .jr-postcard { flex-direction: row; align-items: stretch; min-height: 280px; }
+.jr-postlist .is-style-list .jr-postcard-cover { flex: 0 0 40%; min-width: 240px; height: auto; align-self: stretch; }
+.jr-postlist .is-style-list .jr-postcard-body { flex: 1 1 auto; justify-content: center; padding: clamp(28px, 3vw, 44px) clamp(28px, 3.5vw, 48px) !important; }
+.jr-postlist .is-style-list .jr-postcard-title-link { font-size: clamp(23px, 2.7vw, 29px); }
+.jr-postlist .is-style-list .jr-postcard-title-link a { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.jr-postlist .is-style-list .jr-postcard-excerpt { font-size: 15px; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ---- Sidebar + widgets (reusable template parts) ---- */
+.jr-sidebar { display: flex; flex-direction: column; gap: 34px; position: sticky; top: 88px; }
+/* The sidebar + widget parts are WP constrained-layout groups: core caps the
+   template-part wrapper and each widget's children at contentSize, centers them
+   with margin:auto, and adds .has-global-padding (horizontal padding). Together
+   those inset the label + category list from both edges. Override with enough
+   specificity (+ !important) to keep every widget flush-left and full-width. */
+.jr-sidebar .wp-block-template-part,
+.jr-sidebar .jr-widget { max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; padding-left: 0 !important; padding-right: 0 !important; }
+.jr-sidebar .jr-widget > * { max-width: none !important; margin-left: 0 !important; margin-right: 0 !important; }
+.jr-widget > .jr-eyebrow { margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--jr-line); }
+
+/* Search */
+.jr-search .wp-block-search__inside-wrapper { gap: 8px; }
+.jr-search .wp-block-search__input { font-family: var(--wp--preset--font-family--body); font-size: 14px; padding: 11px 14px; border: 1px solid var(--jr-line); border-radius: 10px; background: #fff; color: var(--jr-ink); }
+.jr-search .wp-block-search__input:focus { outline: none; border-color: var(--jr-accent); }
+.jr-search .wp-block-search__button { font-family: var(--wp--preset--font-family--mono); font-size: 13px; font-weight: 500; color: #0d1210; background: var(--jr-accent); border: 0; padding: 0 18px; border-radius: 10px; cursor: pointer; margin: 0; }
+.jr-search .wp-block-search__button:hover { background: #fff; box-shadow: inset 0 0 0 1px var(--jr-accent); }
+
+/* Categories */
+.jr-cats { list-style: none; margin: 0; padding: 0; font-family: var(--wp--preset--font-family--mono); font-size: 13px; }
+.jr-cats li { display: flex; justify-content: space-between; align-items: baseline; margin: 0; padding: 9px 0; border-bottom: 1px solid var(--jr-line); color: var(--jr-accent-ink); }
+.jr-cats li:last-child { border-bottom: 0; }
+.jr-cats li a { color: var(--jr-ink); text-decoration: none; }
+.jr-cats li a:hover { color: var(--jr-accent-ink); }
+
+/* Recent posts */
+.jr-recent { list-style: none; margin: 0; padding: 0; }
+.jr-recent li { margin: 0 0 16px; }
+.jr-recent li:last-child { margin-bottom: 0; }
+.jr-recent .wp-block-latest-posts__post-title { display: block; font-family: var(--wp--preset--font-family--heading); font-weight: 600; font-size: 14.5px; line-height: 1.35; color: var(--jr-ink); text-decoration: none; }
+.jr-recent .wp-block-latest-posts__post-title:hover { color: var(--jr-accent-ink); }
+.jr-recent .wp-block-latest-posts__post-date { display: block; font-family: var(--wp--preset--font-family--mono); font-size: 12px; color: var(--jr-muted); margin-top: 3px; }
+
+/* Tag cloud */
+.jr-tagcloud { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.jr-tagcloud a { font-family: var(--wp--preset--font-family--mono); font-size: 12px !important; color: var(--jr-accent-ink); border: 1px solid var(--jr-line); padding: 6px 12px; border-radius: 999px; text-decoration: none; line-height: 1; }
+.jr-tagcloud a:hover { border-color: var(--jr-accent); color: var(--jr-accent); }
+
+@media (max-width: 900px) {
+	.jr-blog-layout { grid-template-columns: 1fr; }
+	.jr-sidebar { position: static; }
+}
+
+@media (max-width: 620px) {
+	/* Collapse the multi-column / row layouts on small screens */
+	.jr-postlist .wp-block-post-template.is-style-grid { grid-template-columns: 1fr; }
+	.jr-postlist .is-style-list .jr-postcard { flex-direction: column; }
+	.jr-postlist .is-style-list .jr-postcard-cover { flex: none; height: 190px; }
+}
 
 /* ---------------------------------------------------------------
    ABOUT teaser on the front page (pattern: jorriss/about)
@@ -220,6 +415,7 @@
 .jr-masthead .wp-block-post-title { letter-spacing: -0.03em; line-height: 1.03; }
 .jr-masthead .jr-meta { color: #a7b3ac; }
 .jr-masthead .jr-meta .jr-accent-text { color: var(--jr-accent); }
+.jr-masthead .wp-block-post-author { align-items: center; }
 .jr-masthead .wp-block-post-author__avatar img { width: 28px; height: 28px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.18); }
 .jr-about-tagline { font-size: clamp(16px, 2.2vw, 18px); line-height: 1.6; color: #c3cec8 !important; max-width: 46ch; }
 .jr-aboutmast-photo img { width: 240px; height: 240px; object-fit: cover; border-radius: 18px; border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 24px 50px -22px rgba(0,0,0,0.6); }
@@ -258,6 +454,22 @@
 .jr-back a, a.jr-back { font-family: var(--wp--preset--font-family--mono); font-size: 13px; color: var(--jr-accent-ink) !important; text-decoration: none; }
 .jr-postnav a { font-family: var(--wp--preset--font-family--mono); font-size: 12.5px; color: var(--jr-ink); border: 1px solid var(--jr-line); padding: 9px 14px; border-radius: 10px; text-decoration: none; }
 .jr-postnav a:hover { border-color: var(--jr-accent); color: var(--jr-accent-ink); }
+
+/* author bio band (pattern: jorriss/author-bio) */
+.jr-authormast { position: relative; overflow: hidden; background: var(--jr-dark); border-top: 1px solid rgba(255,255,255,0.08); }
+.jr-authormast, .jr-authormast h2 { color: #eef4f0; }
+.jr-authormast .jr-eyebrow { color: var(--jr-accent) !important; margin: 0 0 8px; }
+.jr-authormast h2 { font-size: clamp(20px, 2.4vw, 26px); letter-spacing: -0.02em; line-height: 1.1; }
+.jr-authormast .jr-authormast-bio { color: #c3cec8 !important; max-width: 62ch; }
+.jr-authormast .wp-block-image, .jr-authormast-photo { margin: 0; width: 100%; background: #262b29; border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.14); font-size: 0; line-height: 0; }
+.jr-authormast-photo img { display: block !important; width: 100% !important; height: auto !important; object-fit: cover !important; border-radius: 14px; }
+.jr-authormast-social .wp-block-button { width: 100%; }
+.jr-authormast-social a { display: block; text-align: center; }
+@media (max-width: 782px) {
+	.jr-authormast > .wp-block-columns { padding-top: 40px !important; padding-bottom: 40px !important; }
+	.jr-authormast .wp-block-column:first-child { flex-basis: 120px !important; }
+	.jr-authormast-social a { text-align: left; }
+}
 
 /* comments */
 .jr-comments .wp-block-post-comments-form input:not([type=submit]):not([type=checkbox]),

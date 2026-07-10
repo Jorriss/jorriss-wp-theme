@@ -6,6 +6,9 @@
 .idea/
 *.swp
 
+# Packaged theme artifact
+jorriss-theme.zip
+
 # Dependencies / build (if tooling is added later)
 node_modules/
 vendor/

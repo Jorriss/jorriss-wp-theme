@@ -8,8 +8,8 @@
 ?>
 <!-- wp:group {"tagName":"section","className":"jr-hero","align":"full","backgroundColor":"dark","layout":{"type":"constrained","contentSize":"1180px"}} -->
 <section class="wp-block-group alignfull jr-hero has-dark-background-color has-background"><!-- wp:columns {"align":"wide","verticalAlignment":"center","style":{"spacing":{"padding":{"top":"30px","bottom":"50px"},"blockGap":{"left":"56px"}}}} -->
-<div class="wp-block-columns alignwide are-vertically-aligned-center" style="padding-top:30px;padding-bottom:50px"><!-- wp:column {"verticalAlignment":"center","width":"58%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:58%"><!-- wp:paragraph {"className":"jr-badge"} -->
+<div class="wp-block-columns alignwide are-vertically-aligned-center" style="padding-top:30px;padding-bottom:50px"><!-- wp:column {"verticalAlignment":"center","width":"53%"} -->
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:53%"><!-- wp:paragraph {"className":"jr-badge"} -->
 <p class="jr-badge">databases · code · the space between</p>
 <!-- /wp:paragraph -->
 
@@ -32,10 +32,10 @@
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
 
-<!-- wp:column {"verticalAlignment":"center","width":"42%"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:42%"><!-- wp:group {"className":"jr-photo-wrap","layout":{"type":"constrained"}} -->
+<!-- wp:column {"verticalAlignment":"center","width":"47%"} -->
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:47%"><!-- wp:group {"className":"jr-photo-wrap","layout":{"type":"constrained"}} -->
 <div class="wp-block-group jr-photo-wrap"><!-- wp:image {"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","className":"jr-hero-photo"} -->
-<figure class="wp-block-image size-large jr-hero-photo"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/placeholder.svg' ) ); ?>" alt="Richie Rump" style="aspect-ratio:4/3;object-fit:cover"/></figure>
+<figure class="wp-block-image size-large jr-hero-photo"><img src="/wp-content/uploads/2026/07/IMG_4561-1024x768.jpg" alt="Richie Rump" style="aspect-ratio:4/3;object-fit:cover"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph {"className":"jr-chip"} -->
@@ -47,7 +47,7 @@
 
 <!-- wp:group {"tagName":"div","className":"jr-techstrip","align":"full","layout":{"type":"constrained","contentSize":"1180px"}} -->
 <div class="wp-block-group alignfull jr-techstrip"><!-- wp:paragraph {"align":"wide","style":{"spacing":{"padding":{"top":"16px","bottom":"16px"}}}} -->
-<p class="alignwide" style="padding-top:16px;padding-bottom:16px"><span>SQL&nbsp;Server</span><span>PostgreSQL</span><span>C#&nbsp;/&nbsp;.NET</span><span>Cloud&nbsp;Solutions</span><span>Query&nbsp;Tuning</span><span>Data&nbsp;Pipelines</span><span class="jr-accent-text">— currently building tooling</span></p>
+<p class="alignwide" style="padding-top:16px;padding-bottom:16px"><span>— currently building tooling</span><span><a href="https://statisticsparser.com" target="_blank" rel="noopener noreferrer">StatisticsParser.com</a></span><span><a href="https://pastetheplan.com" target="_blank" rel="noopener noreferrer">PasteThePlan.com</a></span><span><a href="https://github.com/BrentOzarULTD/StatisticsParserExtension" target="_blank" rel="noopener noreferrer">Statistics Parser SSMS Extension</a></span><span><a href="https://github.com/Jorriss/sp_DataProfile" target="_blank" rel="noopener noreferrer">sp_DataProfile</a></span></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></section>
 <!-- /wp:group -->

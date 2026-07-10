@@ -10,7 +10,7 @@
 <section class="wp-block-group alignfull jr-about has-dark-background-color has-background" id="about"><!-- wp:columns {"align":"wide","verticalAlignment":"center","style":{"spacing":{"padding":{"top":"84px","bottom":"84px"},"blockGap":{"left":"56px"}}}} -->
 <div class="wp-block-columns alignwide are-vertically-aligned-center" style="padding-top:84px;padding-bottom:84px"><!-- wp:column {"verticalAlignment":"center","width":"40%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:40%"><!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"large","className":"jr-about-photo"} -->
-<figure class="wp-block-image size-large jr-about-photo"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/placeholder.svg' ) ); ?>" alt="Richie Rump" style="aspect-ratio:1;object-fit:cover"/></figure>
+<figure class="wp-block-image size-large jr-about-photo"><img src="/wp-content/uploads/2026/07/IMG_8476-1024x1024.jpg" alt="Richie Rump" style="aspect-ratio:1;object-fit:cover"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 

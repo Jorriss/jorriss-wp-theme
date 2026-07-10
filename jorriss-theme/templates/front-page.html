@@ -35,22 +35,20 @@
 <div class="wp-block-group jr-featured-body"><!-- wp:group {"className":"jr-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
 <div class="wp-block-group jr-meta"><!-- wp:post-date {"format":"M j, Y"} /-->
 
-<!-- wp:paragraph {"className":"jr-primary-term","metadata":{"bindings":{"content":{"source":"jorriss/primary-term"}}},"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
-<p class="jr-primary-term" style="margin-top:0;margin-bottom:0">#tag</p>
-<!-- /wp:paragraph -->
-
 <!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"jorriss/reading-time"}}},"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
 <p style="margin-top:0;margin-bottom:0">min read</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"jr-primary-term","metadata":{"bindings":{"content":{"source":"jorriss/primary-term"}}},"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<p class="jr-primary-term" style="margin-top:0;margin-bottom:0">#tag</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
-<!-- wp:post-title {"level":3,"isLink":true,"className":"jr-post-title-link"} /-->
+<!-- wp:post-title {"textAlign":"left","level":3,"isLink":true,"className":"jr-post-title-link"} /-->
 
 <!-- wp:post-excerpt {"className":"jr-post-excerpt","moreText":"","showMoreOnNewLine":false} /-->
 
-<!-- wp:paragraph {"className":"jr-read"} -->
-<p class="jr-read">read the post →</p>
-<!-- /wp:paragraph --></div>
+<!-- wp:read-more {"content":"read the post →","className":"jr-read"} /--></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 <!-- /wp:post-template --></div>
@@ -66,7 +64,11 @@
 
 <!-- wp:group {"className":"jr-card-body","layout":{"type":"constrained"}} -->
 <div class="wp-block-group jr-card-body"><!-- wp:group {"className":"jr-meta","layout":{"type":"flex","flexWrap":"wrap"}} -->
-<div class="wp-block-group jr-meta"><!-- wp:post-date {"format":"M j"} /-->
+<div class="wp-block-group jr-meta"><!-- wp:post-date {"format":"M j, Y"} /-->
+
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"jorriss/reading-time"}}},"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<p style="margin-top:0;margin-bottom:0">min</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"jr-primary-term","metadata":{"bindings":{"content":{"source":"jorriss/primary-term"}}},"style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
 <p class="jr-primary-term" style="margin-top:0;margin-bottom:0">#tag</p>

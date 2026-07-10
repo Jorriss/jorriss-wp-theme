@@ -93,9 +93,15 @@
 	},
 	"templateParts": [
 		{ "name": "header", "title": "Header", "area": "header" },
-		{ "name": "footer", "title": "Footer", "area": "footer" }
+		{ "name": "footer", "title": "Footer", "area": "footer" },
+		{ "name": "sidebar", "title": "Blog Sidebar", "area": "uncategorized" },
+		{ "name": "sidebar-search", "title": "Widget: Search", "area": "uncategorized" },
+		{ "name": "sidebar-categories", "title": "Widget: Categories", "area": "uncategorized" },
+		{ "name": "sidebar-recent", "title": "Widget: Recent Posts", "area": "uncategorized" },
+		{ "name": "sidebar-tags", "title": "Widget: Tag Cloud", "area": "uncategorized" }
 	],
 	"customTemplates": [
-		{ "name": "about", "title": "About Me", "postTypes": [ "page" ] }
+		{ "name": "about", "title": "About Me", "postTypes": [ "page" ] },
+		{ "name": "plain-page", "title": "Plain Page (No Author Bio)", "postTypes": [ "page" ] }
 	]
 }
