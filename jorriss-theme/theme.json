@@ -102,6 +102,8 @@
 	],
 	"customTemplates": [
 		{ "name": "about", "title": "About Me", "postTypes": [ "page" ] },
-		{ "name": "plain-page", "title": "Plain Page (No Author Bio)", "postTypes": [ "page" ] }
+		{ "name": "plain-page", "title": "Plain Page (No Author Bio)", "postTypes": [ "page" ] },
+		{ "name": "featured-page", "title": "Featured Page (Image + Tagline)", "postTypes": [ "page" ] },
+		{ "name": "wide-page", "title": "Wide Page (900px)", "postTypes": [ "page" ] }
 	]
 }

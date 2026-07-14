@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":2,"style":{"spacing":{"margin":{"top":"16px","bottom":"22px"}}}} -->
-<h2 class="wp-block-heading" style="margin-top:16px;margin-bottom:22px">Half developer, half data, all Jorriss</h2>
+<h2 class="wp-block-heading" style="margin-top:16px;margin-bottom:22px">All developer, all data, all Jorriss</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"17px","lineHeight":"1.7"}}} -->

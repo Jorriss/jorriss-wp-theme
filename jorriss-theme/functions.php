@@ -45,6 +45,24 @@ function jorriss_assets() {
 add_action( 'enqueue_block_assets', 'jorriss_assets' );
 
 /**
+ * Add a dedicated "Masthead Lede" field to the Page editor sidebar.
+ * It edits the page excerpt, which the jorriss/lede binding renders in the
+ * masthead — so authors get an obvious labeled field instead of hunting for
+ * the (often hidden) core Excerpt panel.
+ */
+function jorriss_editor_assets() {
+	$path = get_theme_file_path( 'assets/editor-lede.js' );
+	wp_enqueue_script(
+		'jorriss-editor-lede',
+		get_theme_file_uri( 'assets/editor-lede.js' ),
+		array( 'wp-plugins', 'wp-editor', 'wp-edit-post', 'wp-components', 'wp-data', 'wp-element' ),
+		file_exists( $path ) ? filemtime( $path ) : wp_get_theme()->get( 'Version' ),
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'jorriss_editor_assets' );
+
+/**
  * Register a "jorriss" pattern category so the hero/about patterns group together.
  */
 function jorriss_pattern_category() {
@@ -139,6 +157,15 @@ function jorriss_comment_count( $post_id ) {
 }
 
 /**
+ * Manually-entered excerpt only (raw post_excerpt), with NO auto-generated
+ * fallback. Used for the masthead lede so a page with no excerpt shows nothing
+ * instead of the first words of the body content.
+ */
+function jorriss_lede( $post_id ) {
+	return (string) get_post_field( 'post_excerpt', $post_id );
+}
+
+/**
  * Register the binding sources.
  */
 function jorriss_register_bindings() {
@@ -164,6 +191,17 @@ function jorriss_register_bindings() {
 			'get_value_callback' => function ( $source_args, $block ) {
 				$term = jorriss_primary_term( jorriss_binding_post_id( $block ) );
 				return $term ? $term : '// writing';
+			},
+			'uses_context'       => array( 'postId' ),
+		)
+	);
+
+	register_block_bindings_source(
+		'jorriss/lede',
+		array(
+			'label'              => __( 'Lede (manual excerpt)', 'jorriss' ),
+			'get_value_callback' => function ( $source_args, $block ) {
+				return jorriss_lede( jorriss_binding_post_id( $block ) );
 			},
 			'uses_context'       => array( 'postId' ),
 		)

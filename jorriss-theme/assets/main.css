@@ -332,9 +332,10 @@ h3.jr-post-title-link { margin-top: 10px; }
    Fixed min-height + clamped text keep every card the same size; the cover
    stretches flush to the full card height (object-fit fills the image, the
    hatched gradient shows for imageless posts). */
-.jr-postlist .is-style-list .jr-postcard { flex-direction: row; align-items: stretch; min-height: 280px; }
+.jr-postlist .wp-block-post-template.is-style-list { margin-top: 22px; }
+.jr-postlist .is-style-list .jr-postcard { display: flex; flex-direction: row; align-items: stretch; min-height: 280px; }
 .jr-postlist .is-style-list .jr-postcard-cover { flex: 0 0 40%; min-width: 240px; height: auto; align-self: stretch; }
-.jr-postlist .is-style-list .jr-postcard-body { flex: 1 1 auto; justify-content: center; padding: clamp(28px, 3vw, 44px) clamp(28px, 3.5vw, 48px) !important; }
+.jr-postlist .is-style-list .jr-postcard-body { flex: 1 1 auto; justify-content: center; margin-block-start: 0 !important; padding: 20px clamp(28px, 3.5vw, 48px) !important; }
 .jr-postlist .is-style-list .jr-postcard-title-link { font-size: clamp(23px, 2.7vw, 29px); }
 .jr-postlist .is-style-list .jr-postcard-title-link a { display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .jr-postlist .is-style-list .jr-postcard-excerpt { font-size: 15px; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }

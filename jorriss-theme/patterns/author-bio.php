@@ -29,7 +29,7 @@
 <!-- /wp:column -->
 
 <!-- wp:column {"verticalAlignment":"center","width":"180px"} -->
-<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:180px">
-<!-- /wp:column --></div>
+<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:180px"></div>
+<!-- /wp:column -->
 <!-- /wp:columns --></section>
 <!-- /wp:group -->
