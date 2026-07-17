@@ -18,7 +18,7 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"className":"jr-lede"} -->
-<p class="jr-lede">Wedged happily between application code and the database — building tools that shine a light into the dark corners of your data.</p>
+<p class="jr-lede">Wedged happily between application code and the database, building tools that shine a light into the dark corners of your data.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"34px"},"blockGap":"12px"}}} -->

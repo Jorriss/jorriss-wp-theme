@@ -24,11 +24,11 @@
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"17px","lineHeight":"1.7"}}} -->
-<p style="font-size:17px;line-height:1.7">I'm Richie Rump — most of the internet knows me as <span class="jr-accent-text">Jorriss</span>. I've spent my career in that weird, wonderful seam where application code meets the data layer, building tools, tuning queries, and untangling the systems everyone else is a little afraid to touch.</p>
+<p style="font-size:17px;line-height:1.7">I'm Richie Rump, though most of the internet knows me as <span class="jr-accent-text">Jorriss</span>. I've spent my career in that weird, wonderful seam where application code meets the data layer, building tools, tuning queries, and untangling the systems everyone else is a little afraid to touch.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"style":{"typography":{"fontSize":"17px","lineHeight":"1.7"},"spacing":{"margin":{"bottom":"30px"}}}} -->
-<p style="font-size:17px;line-height:1.7;margin-bottom:30px">This is where I write it all down — the war stories, the sharp edges, and the occasional 2&nbsp;a.m. epiphany.</p>
+<p style="font-size:17px;line-height:1.7;margin-bottom:30px">This is where I write it all down: the war stories, the sharp edges, and the occasional 2 a.m. epiphany.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"className":"jr-social","style":{"spacing":{"blockGap":"10px"}}} -->
