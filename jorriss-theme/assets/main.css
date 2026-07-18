@@ -476,6 +476,7 @@ h3.jr-post-title-link { margin-top: 10px; }
    COMMENTS  (core Comments block, restyled)
    --------------------------------------------------------------- */
 .jr-comments .wp-block-comments { margin: 0; }
+.jr-comments li.comment { margin-bottom: 18px !important; }
 
 /* -- header: "// discussion   N comments" over a hairline -- */
 .jr-comments-head { align-items: baseline; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--jr-line); }
@@ -554,7 +555,7 @@ h3.jr-post-title-link { margin-top: 10px; }
 .jr-comment-body .wp-block-comment-content pre { background: var(--jr-dark); color: #eef4f0; padding: 16px 18px; border-radius: 12px; overflow: auto; font-size: 14px; line-height: 1.6; }
 .jr-comment-body .wp-block-comment-content pre code { background: none; padding: 0; color: inherit; }
 
-.jr-comment-body .wp-block-comment-reply-link { margin-top: 10px; }
+.jr-comment-body .wp-block-comment-reply-link { margin-top: 0px; margin-bottom: 10px !important; }
 .jr-comment-body .wp-block-comment-reply-link a { font-family: var(--wp--preset--font-family--mono); font-size: 13px; color: var(--jr-accent-ink); text-decoration: none; }
 .jr-comment-body .wp-block-comment-reply-link a:hover { color: var(--jr-accent); }
 
