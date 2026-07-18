@@ -472,10 +472,105 @@ h3.jr-post-title-link { margin-top: 10px; }
 	.jr-authormast-social a { text-align: left; }
 }
 
-/* comments */
-.jr-comments .wp-block-post-comments-form input:not([type=submit]):not([type=checkbox]),
-.jr-comments .wp-block-post-comments-form textarea { font-family: var(--wp--preset--font-family--body); font-size: 15px; padding: 12px 14px; border: 1px solid var(--jr-line); border-radius: 10px; background: #fff; }
-.jr-comments .wp-block-post-comments-form input[type=submit] { font-family: var(--wp--preset--font-family--mono); font-size: 14px; font-weight: 500; color: #0d1210; background: var(--jr-accent); border: none; padding: 12px 22px; border-radius: 10px; cursor: pointer; }
+/* ---------------------------------------------------------------
+   COMMENTS  (core Comments block, restyled)
+   --------------------------------------------------------------- */
+.jr-comments .wp-block-comments { margin: 0; }
+
+/* -- header: "// discussion   N comments" over a hairline -- */
+.jr-comments-head { align-items: baseline; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--jr-line); }
+.jr-comments-kicker { flex: 0 0 auto; }
+.jr-comments .wp-block-comments-title { margin: 0; font-family: var(--wp--preset--font-family--heading); font-weight: 700; letter-spacing: -0.01em; text-transform: lowercase; }
+
+/* -- the comment form, as a bordered card with a default avatar -- */
+.jr-comments .comment-respond { position: relative; margin: 0 0 44px; padding: 26px 26px 24px 84px; background: #fff; border: 1px solid var(--jr-line); border-radius: 16px; }
+/* commenter avatar, injected by jorriss_comment_form_avatar() in functions.php */
+.jr-comments .jr-respond-avatar-wrap { position: absolute; left: 24px; top: 26px; width: 44px; height: 44px; }
+.jr-comments .jr-respond-avatar-wrap img { width: 44px; height: 44px; border-radius: 50%; display: block; }
+/* hide the "Leave a Reply" title but keep the cancel-reply link usable */
+.jr-comments .comment-reply-title { font-family: var(--wp--preset--font-family--heading); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; color: var(--jr-ink); margin: 0 0 16px; }
+.jr-comments .comment-reply-title small { font-size: 13px; }
+.jr-comments .comment-reply-title small a { font-family: var(--wp--preset--font-family--mono); color: var(--jr-muted); }
+
+/* lay the form out: textarea, helper note, name/email/url row, consent, submit */
+.jr-comments .comment-form { display: flex; flex-wrap: wrap; gap: 14px 18px; }
+.jr-comments .comment-form > p { margin: 0; }
+/* Order matters here: any form element WITHOUT an explicit order (e.g. plugin
+   checkboxes) defaults to 0 and would float to the top — so everything below is
+   pinned. textarea → logged-in status → note → name/email/url → checkboxes → submit. */
+.jr-comments .comment-form-comment { order: 1; flex: 1 0 100%; }
+.jr-comments .logged-in-as { order: 2; flex: 1 0 100%; margin: -2px 0 0; font-family: var(--wp--preset--font-family--mono); font-size: 13px; color: var(--jr-muted); }
+.jr-comments .logged-in-as a { color: var(--jr-accent-ink); text-decoration: none; }
+.jr-comments .comment-notes { order: 3; flex: 1 0 100%; margin: -4px 0 0; font-family: var(--wp--preset--font-family--mono); font-size: 12.5px; color: var(--jr-muted); }
+.jr-comments .comment-form-author { order: 4; }
+.jr-comments .comment-form-email  { order: 5; }
+.jr-comments .comment-form-url    { order: 6; }
+.jr-comments .comment-form-author,
+.jr-comments .comment-form-email,
+.jr-comments .comment-form-url { flex: 1 1 180px; display: flex; flex-direction: column; gap: 6px; }
+/* "Save my name…" cookie consent + the plugin "Notify me…" checkboxes, grouped */
+.jr-comments .comment-form-cookies-consent { order: 7; }
+.jr-comments .comment-subscription-form { order: 8; }
+.jr-comments .comment-form-cookies-consent,
+.jr-comments .comment-subscription-form { flex: 1 0 100%; display: flex; align-items: flex-start; gap: 10px; margin: 0; font-size: 14px; color: var(--jr-muted); }
+.jr-comments .comment-form-cookies-consent + .comment-subscription-form,
+.jr-comments .comment-subscription-form + .comment-subscription-form { margin-top: -6px; }
+.jr-comments .comment-form-cookies-consent label,
+.jr-comments .comment-subscription-form label { font-family: var(--wp--preset--font-family--body); font-size: 14px; letter-spacing: 0; color: var(--jr-muted); }
+.jr-comments .form-submit { order: 9; flex: 1 0 100%; margin: 4px 0 0; text-align: right; }
+
+.jr-comments .comment-form label { font-family: var(--wp--preset--font-family--mono); font-size: 12px; letter-spacing: 0.02em; color: var(--jr-muted); }
+.jr-comments .comment-form input:not([type=submit]):not([type=checkbox]),
+.jr-comments .comment-form textarea { width: 100%; box-sizing: border-box; font-family: var(--wp--preset--font-family--body); font-size: 15px; padding: 12px 14px; border: 1px solid var(--jr-line); border-radius: 10px; background: var(--jr-paper); color: var(--jr-ink); transition: border-color .15s, background .15s; }
+.jr-comments .comment-form textarea { min-height: 96px; resize: vertical; }
+.jr-comments .comment-form input:not([type=submit]):focus,
+.jr-comments .comment-form textarea:focus { outline: none; background: #fff; border-color: var(--jr-accent); }
+.jr-comments .comment-form input[type=checkbox] { margin-top: 2px; accent-color: var(--jr-accent); }
+.jr-comments .comment-form input[type=submit] { font-family: var(--wp--preset--font-family--mono); font-size: 14px; font-weight: 500; color: #0d1210; background: var(--jr-accent); border: none; padding: 12px 24px; border-radius: 10px; cursor: pointer; transition: filter .15s; }
+.jr-comments .comment-form input[type=submit]:hover { filter: brightness(1.05); }
+
+/* -- the thread -- */
+.jr-comments .wp-block-comment-template { list-style: none; margin: 0; padding: 0; }
+.jr-comments .wp-block-comment-template li { margin: 0 0 28px; }
+.jr-comment { align-items: flex-start; flex-wrap: nowrap; }
+.jr-comment-avatar img { width: 44px; height: 44px; border-radius: 50%; display: block; }
+.jr-comment-body { flex: 1; min-width: 0; }
+.jr-comment-head { align-items: baseline; row-gap: 2px; }
+.jr-comment-head .wp-block-comment-author-name { font-family: var(--wp--preset--font-family--heading); font-weight: 700; color: var(--jr-ink); }
+.jr-comment-head .wp-block-comment-author-name a { color: inherit; text-decoration: none; }
+.jr-comment-head .wp-block-comment-date { font-family: var(--wp--preset--font-family--mono); font-size: 13px; color: var(--jr-muted); }
+.jr-comment-head .wp-block-comment-date a { color: inherit; text-decoration: none; }
+
+/* "author" badge on comments by the post author */
+.jr-comments .wp-block-comment-template li.bypostauthor > .jr-comment .wp-block-comment-author-name::after { content: "author"; display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: color-mix(in oklab, var(--jr-accent) 22%, transparent); color: var(--jr-accent-ink); font-family: var(--wp--preset--font-family--mono); font-size: 11px; font-weight: 500; vertical-align: 1px; }
+
+.jr-comment-body .wp-block-comment-content { font-family: var(--wp--preset--font-family--body); font-size: 16px; line-height: 1.6; color: var(--jr-ink); }
+.jr-comment-body .wp-block-comment-content p { margin: 0 0 10px; }
+.jr-comment-body .wp-block-comment-content p:last-child { margin-bottom: 0; }
+/* code snippets inside a comment, matching the article's prose blocks */
+.jr-comment-body .wp-block-comment-content pre,
+.jr-comment-body .wp-block-comment-content code { font-family: var(--wp--preset--font-family--mono); }
+.jr-comment-body .wp-block-comment-content :not(pre) > code { background: color-mix(in oklab, var(--jr-ink) 8%, transparent); padding: 1px 6px; border-radius: 6px; font-size: 0.9em; }
+.jr-comment-body .wp-block-comment-content pre { background: var(--jr-dark); color: #eef4f0; padding: 16px 18px; border-radius: 12px; overflow: auto; font-size: 14px; line-height: 1.6; }
+.jr-comment-body .wp-block-comment-content pre code { background: none; padding: 0; color: inherit; }
+
+.jr-comment-body .wp-block-comment-reply-link { margin-top: 10px; }
+.jr-comment-body .wp-block-comment-reply-link a { font-family: var(--wp--preset--font-family--mono); font-size: 13px; color: var(--jr-accent-ink); text-decoration: none; }
+.jr-comment-body .wp-block-comment-reply-link a:hover { color: var(--jr-accent); }
+
+/* threaded replies: indent under a hairline guide */
+.jr-comments .wp-block-comment-template .wp-block-comment-template { margin-top: 24px; margin-left: 22px; padding-left: 24px; border-left: 1px solid var(--jr-line); }
+.jr-comments .wp-block-comment-template .wp-block-comment-template li:last-child { margin-bottom: 0; }
+
+/* -- pagination as a "load older comments" control -- */
+.jr-comments .wp-block-comments-pagination { margin-top: 36px; gap: 8px; }
+.jr-comments .wp-block-comments-pagination a,
+.jr-comments .wp-block-comments-pagination .wp-block-comments-pagination-numbers { font-family: var(--wp--preset--font-family--mono); font-size: 13px; color: var(--jr-ink); text-decoration: none; }
+.jr-comments .wp-block-comments-pagination-previous,
+.jr-comments .wp-block-comments-pagination-next { padding: 10px 18px; border: 1px solid var(--jr-line); border-radius: 10px; background: #fff; transition: border-color .15s, color .15s; }
+.jr-comments .wp-block-comments-pagination-previous:hover,
+.jr-comments .wp-block-comments-pagination-next:hover { border-color: var(--jr-accent); color: var(--jr-accent-ink); }
+.jr-comments .wp-block-comments-pagination-numbers .current { color: var(--jr-accent-ink); font-weight: 600; }
 
 /* ---------------------------------------------------------------
    FOOTER  (template part, area: footer)
@@ -527,6 +622,12 @@ h3.jr-post-title-link { margin-top: 10px; }
 	.jr-about > .wp-block-columns { padding-top: 60px !important; padding-bottom: 60px !important; }
 	.jr-masthead > .wp-block-group,
 	.jr-masthead > .wp-block-columns { padding-top: 52px !important; padding-bottom: 48px !important; }
+
+	/* comment form: drop the inset avatar so the card can use full width */
+	.jr-comments .comment-respond { padding: 22px 20px; }
+	.jr-comments .jr-respond-avatar-wrap { display: none; }
+	/* keep replies from marching off the right edge on narrow screens */
+	.jr-comments .wp-block-comment-template .wp-block-comment-template { margin-left: 0; padding-left: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
 	.jr-chip, .jr-cursor { animation: none; }

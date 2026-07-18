@@ -219,3 +219,20 @@ function jorriss_register_bindings() {
 	);
 }
 add_action( 'init', 'jorriss_register_bindings' );
+
+/**
+ * Render the commenter's avatar in the top-left of the comment form card.
+ * Logged-in users get their real avatar; visitors get the site default avatar.
+ * Positioned by the .jr-respond-avatar-wrap rule in assets/main.css.
+ */
+function jorriss_comment_form_avatar() {
+	$user_id = is_user_logged_in() ? get_current_user_id() : '';
+
+	// Empty id/email makes get_avatar() return the site's configured default avatar.
+	$avatar = get_avatar( $user_id, 88, '', '', array( 'class' => 'jr-respond-avatar' ) );
+
+	if ( $avatar ) {
+		echo '<div class="jr-respond-avatar-wrap" aria-hidden="true">' . $avatar . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- get_avatar() returns safe markup.
+	}
+}
+add_action( 'comment_form_top', 'jorriss_comment_form_avatar' );
